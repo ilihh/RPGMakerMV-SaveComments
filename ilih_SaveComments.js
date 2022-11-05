@@ -36,7 +36,8 @@
  * ============================================================================
  * Require YEP_SaveCore.
  * Adds "Save with Comments" option.
- * Comments are stored in the specified variable.
+ * Comments are stored in the specified variable and displayed after
+ * YEP_SaveCore.DataColumns.
  *
  * Free for commercial and non-commercial projects.
  * ============================================================================

@@ -1,11 +1,11 @@
 # Save with Comments
 Plugin for RPG Maker MV.
 
-Adds "Save with Comments" option.
+Require **YEP_SaveCore**.
 
-Comments are stored in the specified variable.
+Adds *Save with Comments* option.
 
-Require YEP_SaveCore.
+Comments are stored in the specified variable and displayed after *YEP_SaveCore.DataColumns*.
 
 **Options:**
 - **Command**: text for the save with comments command in the action window. String. Default *+Comments*
