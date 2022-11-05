@@ -14,6 +14,11 @@
  * Default: +Comments
  * @default +Comments
  *
+ * @param Help
+ * @desc Help text displayed when selecting save with comments option.
+ * Default: Saves the current progress with comments in your game
+ * @default Saves the current progress with comments in your game
+ *
  * @param Variable
  * @type number
  * @min 0
@@ -46,7 +51,8 @@
 	let mv_parameters = PluginManager.parameters('ilih_SaveComments');
 	let SaveComments = {};
 
-	SaveComments.CmdSaveComments = String(mv_parameters['Command']);
+	SaveComments.Command = String(mv_parameters['Command']);
+	SaveComments.Help = String(mv_parameters['Help']);
 	SaveComments.Variable = parseInt(mv_parameters['Variable']);
 	SaveComments.Title = String(mv_parameters['Title']);
 
@@ -69,7 +75,7 @@
 	let Window_SaveAction_getCommandName = Window_SaveAction.prototype.getCommandName;
 	Window_SaveAction.prototype.getCommandName = function(type) {
 		if (type === 'save-comments') {
-			return SaveComments.CmdSaveComments;
+			return SaveComments.Command;
 		}
 
 		return Window_SaveAction_getCommandName.call(this, type);
@@ -79,6 +85,17 @@
 	Scene_File.prototype.createActionWindow = function() {
 		Scene_File_createActionWindow.call(this);
 		this._actionWindow.setHandler('save-comments', this.onActionSaveComments.bind(this));
+	};
+
+	let Window_SaveAction_updateHelp = Window_SaveAction.prototype.updateHelp;
+	Window_SaveAction.prototype.updateHelp = function() {
+		if (this.currentSymbol() === 'save-comments')
+		{
+			this._helpWindow.setText(SaveComments.Help);
+			return;
+		}
+
+		return Window_SaveAction_updateHelp.call(this);
 	};
 
 	let Scene_File_onConfirmOk = Scene_File.prototype.onConfirmOk;
