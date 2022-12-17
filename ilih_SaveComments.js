@@ -175,8 +175,11 @@
 		let dx = 0;
 		let width = this.contents.width;
 		let comments = this._saveContents.variables.value(SaveComments.Variable);
-		
-		this.drawDarkRect(dx, dy, width, this.lineHeight());
-		this.drawText(comments, dx + this.textPadding(), dy, width - this.textPadding() * 2, 'left');
+
+		if (comments && (comments !== '0'))
+		{
+			this.drawDarkRect(dx, dy, width, this.lineHeight());
+			this.drawText(comments, dx + this.textPadding(), dy, width - this.textPadding() * 2, 'left');
+		}
 	};
 })();
