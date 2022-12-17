@@ -56,10 +56,10 @@
 	let mv_parameters = PluginManager.parameters('ilih_SaveComments');
 	let SaveComments = {};
 
-	SaveComments.Command = String(mv_parameters['Command']);
-	SaveComments.Help = String(mv_parameters['Help']);
+	SaveComments.Command = String(mv_parameters['Command'] || 'Comments+');
+	SaveComments.Help = String(mv_parameters['Help'] || 'Saves the current progress with comments in your game');
 	SaveComments.Variable = parseInt(mv_parameters['Variable']);
-	SaveComments.Title = String(mv_parameters['Title']);
+	SaveComments.Title = String(mv_parameters['Title'] || 'Enter Comments');
 
 	let Window_SaveAction_maxCols = Window_SaveAction.prototype.maxCols;
 	Window_SaveAction.prototype.maxCols = function() {
