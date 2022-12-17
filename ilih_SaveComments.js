@@ -5,7 +5,7 @@
 
 //=============================================================================
  /*:
- * @plugindesc v1.0.0 Adds "Save with Comments" option.
+ * @plugindesc v1.0.1 Adds "Save with Comments" option.
  * Require YEP_SaveCore.
  * @author ilih
  *
@@ -23,6 +23,7 @@
  * @type number
  * @min 0
  * @desc ID of variable used to store comments.
+ * Should be replaced with the actual Variable ID.
  * @default 0
  *
  * @param Title
@@ -43,7 +44,10 @@
  * ============================================================================
  * Changelog
  * ============================================================================
- * Version 1.00:
+ * Version 1.0.1:
+ * - fixed "0" when comments are not specified.
+ *
+ * Version 1.0.0:
  * - initial release
  */
 //=============================================================================
@@ -176,7 +180,7 @@
 		let width = this.contents.width;
 		let comments = this._saveContents.variables.value(SaveComments.Variable);
 
-		if (comments && (comments !== '0'))
+		if (comments && (comments !== 0))
 		{
 			this.drawDarkRect(dx, dy, width, this.lineHeight());
 			this.drawText(comments, dx + this.textPadding(), dy, width - this.textPadding() * 2, 'left');
