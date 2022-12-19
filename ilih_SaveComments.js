@@ -5,7 +5,7 @@
 
 //=============================================================================
  /*:
- * @plugindesc v1.0.1 Adds "Save with Comments" option.
+ * @plugindesc v1.0.2 Adds "Save with Comments" option.
  * Require YEP_SaveCore.
  * @author ilih
  *
@@ -44,6 +44,9 @@
  * ============================================================================
  * Changelog
  * ============================================================================
+ * Version 1.0.2:
+ * - added an in-game warning if the Variable id is invalid (during save game)
+ *
  * Version 1.0.1:
  * - fixed "0" when comments are not specified.
  *
@@ -144,6 +147,12 @@
 
 	let Scene_File_performActionSave = Scene_File.prototype.performActionSave;
 	Scene_File.prototype.performActionSave = async function() {
+		let valid = (SaveComments.Variable > 0 && SaveComments.Variable < $dataSystem.variables.length);
+		if (!valid)
+		{
+			alert("SaveComments.Variable should be in range 1.." + ($dataSystem.variables.length - 1));
+		}
+
 		let comments = this.require_comments
 			? prompt(SaveComments.Title, '')
 			: '';
